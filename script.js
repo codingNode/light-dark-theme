@@ -1,15 +1,8 @@
 const toggleSwitch=document.querySelector('input[type="checkbox"]');
-const image1=document.getElementsByTagName('img')
-const image2=document.getElementById('image2');
-const image3=document.getElementById('image3');
 const nav=document.getElementById('nav');
 const toggleIcon=document.getElementById('toggle-icon');
 const textBox=document.getElementById('text-box');
 
-console.log(image1[0].src)
-const s1=image1[0].src.split('_light').join('_dark').split('/');
-
-console.log(s1)
 
 
 function darkMode()
@@ -21,11 +14,33 @@ function darkMode()
     toggleIcon.children[0].textContent = 'Dark Mode';
     toggleIcon.children[1].classList.replace('fa-sun','fa-moon');
 
+    const images=document.getElementsByTagName('img');
+    for (var i=0; i<images.length;i++)
+    {
+        let s1=images[i].src.split('_light').join('_dark').split('/');
+        let s2=`${s1[3]}/${s1[4]}`;
+        images[i].src=s2;
+    }
+
     
 }
 
 function lightMode()
 {
+    nav.style.backgroundColor = 'rgb(255 255 255 / 50%)';
+    textBox.style.backgroundColor = 'rgb(0 0 0 / 60%)';
+
+//    console.log(toggleIcon.children)
+    toggleIcon.children[0].textContent = 'Light Mode';
+    toggleIcon.children[1].classList.replace('fa-moon','fa-sun');
+
+    const images=document.getElementsByTagName('img');
+    for (var i=0; i<images.length;i++)
+    {
+        let s1=images[i].src.split('_dark').join('_light').split('/');
+        let s2=`${s1[3]}/${s1[4]}`;
+        images[i].src=s2;
+    }
 
 }
 
